@@ -3,7 +3,7 @@ var valid = require('validator');
 const worktypeSchema=mongoose.Schema({
     name:{
         type:String,
-        required:[true,'Suppler name is required']
+        required:[true,'name of work is required']
     },
    
 })

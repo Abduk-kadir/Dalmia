@@ -3,6 +3,7 @@ const jsonwebToken=require('jsonwebtoken')
 require('dotenv').config()
 require('./config/dbConfig')
 let WorkRouter=require('./routes/workRoute')
+const UserRouter=require('./routes/userRoute')
 const app=express()
 app.use(express.json())
 app.use(function(req,res,next){
@@ -27,6 +28,7 @@ const port =process.env.port||5000
 app.listen(port,()=>console.log(`app is listining is port ${port}`))
 
 app.use('/api/work',WorkRouter)
+app.use('/api/user',UserRouter)
 
 
  
