@@ -25,14 +25,10 @@ router.post('/addworktype',async(req,res)=>{
 
 })
 
-router.get('allworktype',async(req,res)=>{
+router.get('/allworktype',async(req,res)=>{
     try{
         let data=await WorkType.find()
-        res.send({
-            message:"data is  work successfully fectced",
-            success:true,
-            data:data
-        })
+        res.send(data)
     }
     catch(err){
         res.send({
