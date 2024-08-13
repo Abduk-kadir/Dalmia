@@ -1,0 +1,48 @@
+const express=require('express')
+let router=express.Router()
+let WorkType=require('../modals/worktypeModel')
+const { model } = require('mongoose')
+//let authMidd=require('../middleware/authmiddleware')
+router.post('/addworktype',async(req,res)=>{
+    try{
+        let data=await WorkType.findOne({name:req.body.name})
+        if(!data){
+        let body=req.body;    
+        let worktype=new WorkType(body);
+        await worktype.save();
+        res.status(201).send("data is successfull added")
+       }
+       else{
+        res.status(400).send('data is already exists')
+
+       }    
+   
+       }
+       catch(err){
+         res.status(500).send(err.message)
+   
+       }
+
+})
+
+router.get('allworktype',async(req,res)=>{
+    try{
+        let data=await WorkType.find()
+        res.send({
+            message:"data is  work successfully fectced",
+            success:true,
+            data:data
+        })
+    }
+    catch(err){
+        res.send({
+            message:err.message,
+            success:false,
+            data:null
+        })
+
+    }
+    
+})
+
+module.exports=router
