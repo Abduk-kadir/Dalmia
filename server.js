@@ -4,6 +4,7 @@ require('dotenv').config()
 require('./config/dbConfig')
 let WorkRouter=require('./routes/workRoute')
 const UserRouter=require('./routes/userRoute')
+const BuildingRouter=require('./routes/BuildingRoute')
 const app=express()
 app.use(express.json())
 app.use(function(req,res,next){
@@ -29,6 +30,7 @@ app.listen(port,()=>console.log(`app is listining is port ${port}`))
 
 app.use('/api/work',WorkRouter)
 app.use('/api/user',UserRouter)
+app.use('/api/building',BuildingRouter)
 
 
  

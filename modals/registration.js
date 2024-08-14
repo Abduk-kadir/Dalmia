@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 var valid = require('validator');
 const registrationSchema=mongoose.Schema({
-    firsName:{
+    firstName:{
         type:String,
         required:[true,'name is required'],
       },
@@ -9,6 +9,18 @@ const registrationSchema=mongoose.Schema({
         type:String,
         required:[true,'name is required'],
       },
+    email:{
+        type:String,
+        validate: {
+            validator: function(v) {
+             return valid.isEmail(v)
+            },
+            message: props => `${props.value}  please provide a valid email!`
+          },
+      required:[true]
+
+
+    }, 
     password:{
         type:String,
         validate: {
@@ -34,8 +46,12 @@ const registrationSchema=mongoose.Schema({
    role:{
     type:String,
     default:"User"
+   },
+   userId:{
+    type:String,
+    required:[true,'user id is required']
+
    }
-  
    
 })
 module.exports=mongoose.model('Registration',registrationSchema)
